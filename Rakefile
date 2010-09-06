@@ -29,6 +29,14 @@ Rspec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = "spec/**/*_spec.rb"
 end
 
+Rspec::Core::RakeTask.new("spec:unit") do |spec|
+  spec.pattern = "spec/unit/**/*_spec.rb"
+end
+
+Rspec::Core::RakeTask.new("spec:integration") do |spec|
+  spec.pattern = "spec/integration/**/*_spec.rb"
+end
+
 Rspec::Core::RakeTask.new('spec:progress') do |spec|
   spec.spec_opts = %w(--format progress)
   spec.pattern = "spec/**/*_spec.rb"
