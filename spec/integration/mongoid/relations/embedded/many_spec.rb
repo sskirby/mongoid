@@ -243,8 +243,8 @@ describe Mongoid::Relations::Embedded::Many do
     end
 
     before do
-      person.addresses.build(:street => "Bond")
       person.addresses.create(:street => "Upper")
+      person.addresses.build(:street => "Bond")
     end
 
     it "returns the number of persisted documents" do

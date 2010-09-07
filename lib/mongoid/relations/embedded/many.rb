@@ -17,6 +17,7 @@ module Mongoid # :nodoc:
         def <<(*docs)
           docs.flatten.each do |doc|
             append(doc) unless target.include?(doc)
+            doc.save if base.persisted?
           end
         end
         alias :concat :<<
@@ -34,7 +35,7 @@ module Mongoid # :nodoc:
         # <tt>person.addresses.bind</tt>
         def bind
           binding.bind_all
-          # target.each(&:save) if base.persisted?
+          target.each(&:save) if base.persisted?
         end
 
         # Bind the inverse relation between a single document in this proxy
