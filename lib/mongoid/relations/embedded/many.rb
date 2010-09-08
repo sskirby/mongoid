@@ -70,6 +70,7 @@ module Mongoid # :nodoc:
           instantiated(type).tap do |doc|
             append(doc)
             doc.write_attributes(attributes)
+            doc.identify
           end
         end
 
