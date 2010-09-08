@@ -40,7 +40,7 @@ module Mongoid #:nodoc:
     protected
     # Get all the push attributes that need to occur.
     def _pushes
-      (new_record? && embedded_many? && !_parent.new_record?) ? { _path => raw_attributes } : {}
+      (new_record? && embedded_many? && !_parent.new_record?) ? { _path => to_hash } : {}
     end
 
     # Get all the attributes that need to be set.
@@ -48,7 +48,7 @@ module Mongoid #:nodoc:
       if changed? && !new_record?
         setters
       else
-        embedded_one? && new_record? ? { _path => raw_attributes } : {}
+        embedded_one? && new_record? ? { _path => to_hash } : {}
       end
     end
   end
