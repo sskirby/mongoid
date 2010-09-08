@@ -4,7 +4,7 @@ module Mongoid #:nodoc:
     extend ActiveSupport::Concern
     included do
       include Mongoid::Components
-      attr_reader :new_record
+      attr_accessor :new_record
     end
 
     # Performs equality checking on the document ids. For more robust
@@ -122,8 +122,8 @@ module Mongoid #:nodoc:
     # A new document.
     def initialize(attrs = nil)
       @attributes = default_attributes
-      process(attrs)
       @new_record = true
+      process(attrs)
       document = yield self if block_given?
       identify
       run_callbacks(:initialize) { document }
